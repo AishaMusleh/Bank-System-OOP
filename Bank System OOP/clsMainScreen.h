@@ -10,6 +10,7 @@
 #include "clsTransactionScreen.h"
 #include "clsManageUserScreen.h"
 #include "clsLogInRegisterScreen.h"
+#include "clsCurrencyExchangeScreen.h"
 #include "Global.h"
 
 using namespace std;
@@ -27,7 +28,8 @@ private:
 		TransActions = 6,
 		ManageUsers = 7,
 		LogInRegister = 8,
-		LogOut = 9
+		CurrencyExchange = 9,
+		LogOut = 10
 	};
 
 	static void _GoBackToMainMenue() {
@@ -66,6 +68,10 @@ private:
 
 	static void _LoginRegisterScreen() {
 		clsLogInRegisterScreen::ShowLogInRegisterScreen();
+	}
+
+	static void _CurrencyExchangeScreen() {
+		clsCurrencyExchangeScreen::ShowCurrencyExchangeScreen();
 	}
 
 	static void _LogOutScreen() {
@@ -115,6 +121,11 @@ private:
 			_LoginRegisterScreen();
 			_GoBackToMainMenue();
 			break;
+		case enMainMenueOption::CurrencyExchange:
+			system("cls");
+			_CurrencyExchangeScreen();
+			_GoBackToMainMenue();
+			break;
 		case enMainMenueOption::LogOut:
 			system("cls");
 			_LogOutScreen();
@@ -125,7 +136,7 @@ private:
 	}
 
 	static short _ReadMainMenueOption() {
-		short choose = clsInputValidate::ReadshortNumberBetween(1, 9, "Please Enter Number Between 1->9 : ");
+		short choose = clsInputValidate::ReadshortNumberBetween(1, 10, "Please Enter Number Between 1->10 : ");
 		return choose;
 	}
 
@@ -148,7 +159,8 @@ public:
 		cout << "\t[6] Transactions.\n";
 		cout << "\t[7] Manage Users.\n";
 		cout << "\t[8] LogIn Register.\n";
-		cout << "\t[9] LogOut.\n";
+		cout << "\t[9] Currency Exchange.\n";
+		cout << "\t[10] LogOut.\n";
 		cout << "====================================\n";
 
 		_PerformMainMenueOption((enMainMenueOption)_ReadMainMenueOption());
